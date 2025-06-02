@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Attack
+  - Item
+  - Door
+  - Stool
+  - Ground
+  - Monster
   layers:
   - Default
   - TransparentFX

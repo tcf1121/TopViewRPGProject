@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Equip : Item
 {
+    private ParticleSystemRenderer _particleRenderer;
     public EquipType equipType;
     public int Hp;
     public int Mp;
@@ -11,6 +12,23 @@ public class Equip : Item
     public int Defense;
     public int Speed;
     public Mesh EquipMesh;
+
+    void Awake() => Init();
+
+    protected void Init()
+    {
+        _particleRenderer = GetComponent<ParticleSystemRenderer>();
+        _particleRenderer.mesh = EquipMesh;
+    }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Player"))
+    //     {
+    //         //인벤토리 확인 후 비어 있으면 인벤토리에 아이템 추가
+    //         Destroy(gameObject);
+    //     }
+    // }
 }
 
 public enum EquipType
@@ -20,6 +38,5 @@ public enum EquipType
     Legs,
     Gauntlets,
     Boots,
-    Cape,
     Weapon
 }

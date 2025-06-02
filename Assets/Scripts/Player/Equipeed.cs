@@ -13,19 +13,25 @@ public class Equipped : MonoBehaviour
     [Header("Equipped")]
     [SerializeField] private Equip[] EquipPart;
 
+    [Header("Weapon")]
+    [SerializeField] private GameObject _weaponPart;
+    [SerializeField] private GameObject _weaponEquip;
 
-    private void Equip()
+    private void Equip(int partNum)
     {
-        for (int i = 0; i < 7; i++)
+        if (partNum == 5)
         {
-            if (EquipPart[i] != null)
-            {
-                _part[i].sharedMesh = EquipPart[i].EquipMesh;
-            }
+            foreach (Transform child in _weaponPart.transform)
+                Destroy(child.gameObject);
+            if (_weaponEquip != null)
+                Instantiate(_weaponEquip, _weaponPart.transform);
+        }
+        else
+        {
+            if (EquipPart[partNum] != null)
+                _part[partNum].sharedMesh = EquipPart[partNum].EquipMesh;
             else
-            {
-                _part[i].sharedMesh = _nakedPart[i];
-            }
+                _part[partNum].sharedMesh = _nakedPart[partNum];
         }
 
     }
@@ -33,7 +39,8 @@ public class Equipped : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
-            Equip();
+            for (int i = 0; i < 6; i++)
+                Equip(i);
     }
 
 }

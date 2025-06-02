@@ -10,6 +10,7 @@ public class DungeonPlayer : MonoBehaviour
     [SerializeField] private GameObject _player;
     private PlayerToDungeon _playerToDungeon;
     [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private GameObject _msPrefab;
     private MonsterSpawner _monsterSpawner;
     private EctSpawner _ectSpawner;
     private Room[,] _roomArray = new Room[20, 20];
@@ -17,7 +18,7 @@ public class DungeonPlayer : MonoBehaviour
 
     public void Init()
     {
-        _monsterSpawner = GetComponent<MonsterSpawner>();
+        _monsterSpawner = _msPrefab.GetComponent<MonsterSpawner>();
         _ectSpawner = GetComponent<EctSpawner>();
         _playerToDungeon = _player.AddComponent<PlayerToDungeon>();
         _playerToDungeon.DungeonPlayer = this;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class TreasureChest : MonoBehaviour
 {
     private int _floor;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private List<Item> _items;
     // 가지고 있는 아이템 리스트
 
     void OnDestroy()
@@ -26,7 +28,11 @@ public class TreasureChest : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Attack"))
-            Destroy(gameObject);
+            _animator.SetTrigger("IsOpen");
+    }
 
+    void DestroyTreasure()
+    {
+        Destroy(gameObject);
     }
 }
