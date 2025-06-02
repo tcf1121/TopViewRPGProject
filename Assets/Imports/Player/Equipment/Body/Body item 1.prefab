@@ -14754,6 +14754,7 @@ MonoBehaviour:
   itemType: 0
   _name: "\uCC9C \uC637"
   Description: 
+  sprite: {fileID: 21300000, guid: 8e63741f7b6a3c046a25303192732d11, type: 3}
   equipType: 1
   Hp: 0
   Mp: 0

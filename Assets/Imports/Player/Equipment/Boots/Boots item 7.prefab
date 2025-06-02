@@ -54,6 +54,7 @@ MonoBehaviour:
   itemType: 0
   _name: "\uAC08\uC0C9 \uBCF4\uD638 \uAC00\uC8FD \uC7A5\uD654"
   Description: 
+  sprite: {fileID: 21300000, guid: ec67e3fd1947c404daf457274eabd302, type: 3}
   equipType: 4
   Hp: 0
   Mp: 0

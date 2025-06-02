@@ -15,6 +15,9 @@ public class PlayerStatus : MonoBehaviour
     [field: SerializeField]
     [field: Range(0, 10)]
     public float DashPower { get; set; }
+
+
+    public int Level;
     [field: SerializeField]
     [field: Range(0, 500)]
     public int MaxHP { get; set; }
@@ -24,9 +27,13 @@ public class PlayerStatus : MonoBehaviour
     public Rigidbody Rigid;
     public Animator Animator;
     public GameObject AttackRange;
+    public GameObject PickRange;
 
     public bool IsJump;
+
     public bool[] IsDoing = new bool[7];
+
+    public bool IsOnUI;
 }
 
 public enum doName

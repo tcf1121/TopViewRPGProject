@@ -8,15 +8,20 @@ public abstract class Item : MonoBehaviour
     public ItemType itemType;
     public String _name;
     public String Description;
+    public Sprite sprite;
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Pick"))
         {
-            //인벤토리 확인 후 비어 있으면 인벤토리에 아이템 추가
+            Player player = GameObject.Find("Player").GetComponent<Player>();
+            player.inventory.AddItem(gameObject.name);
+            // gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
+
 }
 
 public enum ItemType

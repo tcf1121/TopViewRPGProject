@@ -10,6 +10,7 @@ TagManager:
   - Stool
   - Ground
   - Monster
+  - Pick
   layers:
   - Default
   - TransparentFX
