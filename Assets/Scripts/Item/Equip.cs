@@ -15,8 +15,9 @@ public class Equip : Item
 
     void Awake() => Init();
 
-    protected void Init()
+    protected new void Init()
     {
+        base.Init();
         _particleRenderer = GetComponent<ParticleSystemRenderer>();
         _particleRenderer.mesh = EquipMesh;
     }

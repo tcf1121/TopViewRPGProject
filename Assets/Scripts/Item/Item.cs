@@ -6,10 +6,10 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     public ItemType itemType;
+    public String ItemCode;
     public String _name;
     public String Description;
     public Sprite sprite;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +20,16 @@ public abstract class Item : MonoBehaviour
             // gameObject.SetActive(false);
             Destroy(gameObject);
         }
+    }
+
+    void Awake()
+    {
+        Init();
+    }
+
+    protected void Init()
+    {
+        ItemCode = gameObject.name;
     }
 
 }

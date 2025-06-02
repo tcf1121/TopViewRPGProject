@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     public Equipped equipped;
     public PlayerStatus playerStatus;
     public PlayerController playerController;
+    public Rigidbody Rigid;
+    public Animator Animator;
+    public GameObject AttackRange;
+    public GameObject PickRange;
 
     void Awake() => Init();
 
@@ -17,5 +21,7 @@ public class Player : MonoBehaviour
         equipped = GetComponent<Equipped>();
         playerStatus = GetComponent<PlayerStatus>();
         playerController = GetComponent<PlayerController>();
+        Rigid = GetComponent<Rigidbody>();
+        Animator = GetComponent<Animator>();
     }
 }

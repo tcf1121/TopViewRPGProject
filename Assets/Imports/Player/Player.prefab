@@ -226,6 +226,8 @@ GameObject:
   - component: {fileID: 2776337356360441711}
   - component: {fileID: 1575657524339034013}
   - component: {fileID: 8912316058215119932}
+  - component: {fileID: 3191255820492957257}
+  - component: {fileID: 836900894666768323}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -358,15 +360,13 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <JumpPower>k__BackingField: 5
   <DashPower>k__BackingField: 3
+  Level: 0
   <MaxHP>k__BackingField: 0
   <Damage>k__BackingField: 0
   InputDirection: {x: 0, y: 0}
-  Rigid: {fileID: 7442892787812470261}
-  Animator: {fileID: 8912316058215119932}
-  AttackRange: {fileID: 587419065423171989}
-  PickRange: {fileID: 706964407202281345}
   IsJump: 0
   IsDoing: 000000000000
+  IsOnUI: 0
 --- !u!114 &1575657524339034013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +386,7 @@ MonoBehaviour:
   - {fileID: 875473081064933879}
   - {fileID: 569050927065044102}
   - {fileID: 8320360231429888168}
+  _hairPrefab: {fileID: 3583562253435258406}
   _nakedPart:
   - {fileID: 0}
   - {fileID: 4300000, guid: c966f3e8c5aa8ff43b1016f1ef3b2507, type: 2}
@@ -423,6 +424,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3191255820492957257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296397090211103509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a792c279f4556f4ba66c4352d6e1305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 836900894666768323}
+  equipped: {fileID: 1575657524339034013}
+  playerStatus: {fileID: 2776337356360441711}
+  playerController: {fileID: 4837239892511880406}
+  Rigid: {fileID: 7442892787812470261}
+  Animator: {fileID: 8912316058215119932}
+  AttackRange: {fileID: 587419065423171989}
+  PickRange: {fileID: 706964407202281345}
+--- !u!114 &836900894666768323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296397090211103509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bc1e86cf59bbf4a968ba918373a6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 0}
+  Equipitems: []
+  Useitems: []
+  Etcitems: []
 --- !u!1001 &1705003810661143595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2010,6 +2047,11 @@ Transform:
 --- !u!137 &2086640763714501559 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5711547955092609520, guid: 9cf5d75d1944d3943b75c975d014d2e7, type: 3}
+  m_PrefabInstance: {fileID: 6032081467724145223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3583562253435258406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7065335004484330593, guid: 9cf5d75d1944d3943b75c975d014d2e7, type: 3}
   m_PrefabInstance: {fileID: 6032081467724145223}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &3668116561522881444 stripped

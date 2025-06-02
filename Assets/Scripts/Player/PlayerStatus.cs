@@ -24,15 +24,9 @@ public class PlayerStatus : MonoBehaviour
 
     [field: SerializeField] public int Damage { get; set; }
     public Vector2 InputDirection;
-    public Rigidbody Rigid;
-    public Animator Animator;
-    public GameObject AttackRange;
-    public GameObject PickRange;
 
     public bool IsJump;
-
     public bool[] IsDoing = new bool[7];
-
     public bool IsOnUI;
 }
 

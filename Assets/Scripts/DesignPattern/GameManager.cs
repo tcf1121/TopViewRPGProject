@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameObject player;
+    [SerializeField] public static Player player;
     public static Dungeon Dungeon;
 
     private static GameManager instance;
@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetSingleton();
-        player = GameObject.Find("Player");
-        Dungeon = GameObject.Find("DungeonManager").GetComponent<Dungeon>();
+        player = GameObject.Find("Player").GetComponent<Player>();
+        //Dungeon = GameObject.Find("DungeonManager").GetComponent<Dungeon>();
         // 테스트용 추가
-        testGameStart();
+        //testGameStart();
     }
     private void SetSingleton()
     {

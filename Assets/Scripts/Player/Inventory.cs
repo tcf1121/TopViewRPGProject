@@ -30,6 +30,9 @@ public class Inventory : MonoBehaviour
             Useitems.Add(item);
         if (item.itemType == ItemType.Etc)
             Etcitems.Add(item);
+
+        if (InventoryUI.gameObject.activeSelf)
+            RefreshInven();
     }
 
     public void DropItem(ItemType itemType, int at)
@@ -64,5 +67,10 @@ public class Inventory : MonoBehaviour
     public void OpenInventory(bool value)
     {
         InventoryUI.gameObject.SetActive(value);
+    }
+
+    public void RefreshInven()
+    {
+        InventoryUI.SetInventory();
     }
 }

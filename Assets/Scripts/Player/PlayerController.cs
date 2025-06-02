@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_player.playerStatus.IsJump && !_delay)
         {
-            _player.playerStatus.Rigid.AddForce(Vector3.up * _player.playerStatus.JumpPower, ForceMode.Impulse);
+            _player.Rigid.AddForce(Vector3.up * _player.playerStatus.JumpPower, ForceMode.Impulse);
             UseJump();
         }
     }
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         if (!_player.playerStatus.IsDoing[(int)doName.Dash])
         {
             _player.playerStatus.IsDoing[(int)doName.Dash] = true;
-            _player.playerStatus.Rigid.AddForce(transform.forward * 8f, ForceMode.Impulse);
+            _player.Rigid.AddForce(transform.forward * 8f, ForceMode.Impulse);
             UseDash();
             StartCoroutine(CoolTime((int)doName.Dash, 3f));
         }
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (!_player.playerStatus.IsDoing[(int)doName.Skill3] && !_delay)
         {
             _player.playerStatus.IsDoing[(int)doName.Skill3] = true;
-            _player.playerStatus.Rigid.AddForce(transform.forward, ForceMode.Impulse);
+            _player.Rigid.AddForce(transform.forward, ForceMode.Impulse);
             UseSkill(3);
             StartCoroutine(CoolTime((int)doName.Skill3, 3f));
         }
@@ -151,20 +151,20 @@ public class PlayerController : MonoBehaviour
 
     private void AttackRange(int attack)
     {
-        if (attack == 1) _player.playerStatus.AttackRange.SetActive(true);
-        else _player.playerStatus.AttackRange.SetActive(false);
+        if (attack == 1) _player.AttackRange.SetActive(true);
+        else _player.AttackRange.SetActive(false);
     }
 
     private void PickRange(int pick)
     {
-        if (pick == 1) _player.playerStatus.PickRange.SetActive(true);
-        else _player.playerStatus.PickRange.SetActive(false);
+        if (pick == 1) _player.PickRange.SetActive(true);
+        else _player.PickRange.SetActive(false);
     }
 
     private void OffDelay()
     {
         _delay = false;
-        _player.playerStatus.Rigid.velocity = Vector3.zero;
+        _player.Rigid.velocity = Vector3.zero;
     }
 
     private void OnNum1(InputValue value)
@@ -217,36 +217,36 @@ public class PlayerController : MonoBehaviour
     private void UseDash()
     {
         _delay = true;
-        _player.playerStatus.Animator.SetTrigger("IsDash");
+        _player.Animator.SetTrigger("IsDash");
     }
 
     private void UseJump()
     {
-        _player.playerStatus.Animator.SetTrigger("IsJump");
+        _player.Animator.SetTrigger("IsJump");
     }
 
     private void UsePick()
     {
         _delay = true;
-        _player.playerStatus.Animator.SetTrigger("IsPick");
+        _player.Animator.SetTrigger("IsPick");
     }
 
     private void UseAttack()
     {
         _delay = true;
-        _player.playerStatus.Animator.SetTrigger("IsAttack");
+        _player.Animator.SetTrigger("IsAttack");
     }
 
     private void UseSkill(int num)
     {
         _delay = true;
-        _player.playerStatus.Animator.SetInteger("SkillNum", num);
-        _player.playerStatus.Animator.SetTrigger("IsSkill");
+        _player.Animator.SetInteger("SkillNum", num);
+        _player.Animator.SetTrigger("IsSkill");
     }
 
     private void IsMove(bool move)
     {
-        _player.playerStatus.Animator.SetBool("IsMove", move);
+        _player.Animator.SetBool("IsMove", move);
     }
 
 
