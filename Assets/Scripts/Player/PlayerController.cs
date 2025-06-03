@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnJump(InputValue value)
+    private void OnJump()
     {
         if (!_player.playerStatus.IsJump && !_delay)
         {
@@ -71,9 +71,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnInven(InputValue value)
+    public void OnInven()
     {
-        Debug.Log("인벤 열기");
         if (!_player.inventory.getUIOn())
         {
             _player.playerStatus.IsOnUI = true;
@@ -86,14 +85,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnEquip()
+    {
+        if (!_player.equipped.getUIOn())
+        {
+            _player.playerStatus.IsOnUI = true;
+            _player.equipped.OpenEquipeed(true);
+        }
+        else
+        {
+            _player.equipped.OpenEquipeed(false);
+            _player.playerStatus.IsOnUI = AllUIOff();
+        }
+    }
+
     private bool AllUIOff()
     {
         if (_player.inventory.getUIOn())
             return true;
+        if (_player.equipped.getUIOn())
+            return true;
         return false;
     }
 
-    private void OnPick(InputValue value)
+    private void OnPick()
     {
         if (!_delay)
         {
@@ -101,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDash(InputValue value)
+    private void OnDash()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Dash])
         {
@@ -112,13 +127,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnAttack(InputValue value)
+    private void OnAttack()
     {
         if (!_delay && !_player.playerStatus.IsOnUI) UseAttack();
 
     }
 
-    private void OnSkill1(InputValue value)
+    private void OnSkill1()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Skill1] && !_delay)
         {
@@ -128,7 +143,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnSkill2(InputValue value)
+    private void OnSkill2()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Skill2] && !_delay)
         {
@@ -138,7 +153,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnSkill3(InputValue value)
+    private void OnSkill3()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Skill3] && !_delay)
         {
@@ -167,7 +182,7 @@ public class PlayerController : MonoBehaviour
         _player.Rigid.velocity = Vector3.zero;
     }
 
-    private void OnNum1(InputValue value)
+    private void OnNum1()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Num1])
         {
@@ -177,7 +192,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnNum2(InputValue value)
+    private void OnNum2()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Num2])
         {
@@ -187,7 +202,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnNum3(InputValue value)
+    private void OnNum3()
     {
         if (!_player.playerStatus.IsDoing[(int)doName.Num3])
         {

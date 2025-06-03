@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Equipped : MonoBehaviour
 {
+    [SerializeField] private GameObject EquipeedPrefab;
+    private EquipeedUI EquipeedUI;
 
     [Header("Part")]
     [SerializeField] private SkinnedMeshRenderer[] _part;
@@ -13,22 +15,33 @@ public class Equipped : MonoBehaviour
     [SerializeField] private Mesh[] _nakedPart;
 
     [Header("Equipped")]
-    [SerializeField] private Equip[] EquipPart;
+    [SerializeField] public Equip[] EquipPart;
 
     [Header("Weapon")]
     [SerializeField] private GameObject _weaponPart;
-    [SerializeField] private GameObject _weaponEquip;
+    [SerializeField] public Weapon _weaponEquip;
+
+    void Awake() => Init();
+
+    private void Init()
+    {
+        GameObject EquippedObj = Instantiate(EquipeedPrefab, GameObject.Find("Canvas").transform);
+        EquippedObj.name = "Equipped";
+        EquippedObj.SetActive(false);
+        EquipeedUI = EquippedObj.GetComponent<EquipeedUI>();
+        EquipeedUI.setEquipeed(this);
+    }
+
 
     public void EquipItem(Equip equip)
     {
         UnEquipItem((int)equip.equipType);
         if (equip.equipType == EquipType.Weapon)
         {
-            Debug.Log(equip.ItemCode);
-            GameObject weaponPrefab = Resources.Load<GameObject>($"Item/{equip.ItemCode}");
-            _weaponEquip = weaponPrefab.GetComponent<Weopon>().weoponPrefab;
+            GameObject weaponObj = Resources.Load<GameObject>($"Item/{equip.ItemCode}");
+            _weaponEquip = weaponObj.GetComponent<Weapon>();
 
-            Instantiate(_weaponEquip, _weaponPart.transform);
+            Instantiate(_weaponEquip.weoponPrefab, _weaponPart.transform);
         }
         else
         {
@@ -47,7 +60,7 @@ public class Equipped : MonoBehaviour
                 Destroy(child.gameObject);
             if (_weaponEquip != null)
             {
-                GameManager.player.inventory.AddItem(_weaponEquip.name);
+                GameManager.player.inventory.AddItem(_weaponEquip.ItemCode);
                 _weaponEquip = null;
             }
         }
@@ -57,11 +70,25 @@ public class Equipped : MonoBehaviour
                 _hairPrefab.SetActive(true);
             if (EquipPart[partNum] != null)
             {
-                GameManager.player.inventory.AddItem(_part[partNum].gameObject.name);
+                GameManager.player.inventory.AddItem(EquipPart[partNum].ItemCode);
                 EquipPart[partNum] = null;
                 _part[partNum].sharedMesh = _nakedPart[partNum];
             }
         }
     }
 
+    public bool getUIOn()
+    {
+        return EquipeedUI.gameObject.activeSelf;
+    }
+
+    public void OpenEquipeed(bool value)
+    {
+        EquipeedUI.gameObject.SetActive(value);
+    }
+
+    public void RefreshEquip()
+    {
+        EquipeedUI.setEquip();
+    }
 }

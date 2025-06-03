@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private InventoryUI InventoryUI;
+    [SerializeField] private GameObject InventoryPrefab;
+    private InventoryUI InventoryUI;
     public List<Item> Equipitems;
     public List<Item> Useitems;
     public List<Item> Etcitems;
@@ -15,6 +16,11 @@ public class Inventory : MonoBehaviour
 
     private void Init()
     {
+        GameObject InvenObj = Instantiate(InventoryPrefab, GameObject.Find("Canvas").transform);
+        InvenObj.name = "Inventory";
+        InvenObj.SetActive(false);
+        InventoryUI = InvenObj.GetComponent<InventoryUI>();
+        InventoryUI.setInven(this);
         Equipitems = new();
         Useitems = new();
         Etcitems = new();

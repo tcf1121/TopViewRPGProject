@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weopon : Equip
+public class Weapon : Equip
 {
     public GameObject weoponPrefab;
     public WeoponType weoponType;
