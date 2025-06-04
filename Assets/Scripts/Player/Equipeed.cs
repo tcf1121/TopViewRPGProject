@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Equipped : MonoBehaviour
@@ -27,7 +25,7 @@ public class Equipped : MonoBehaviour
 
     private void Init()
     {
-        GameObject EquippedObj = Instantiate(EquipeedPrefab, GameObject.Find("Canvas").transform);
+        GameObject EquippedObj = Instantiate(EquipeedPrefab, GameObject.Find("PlayerUI").transform);
         EquippedObj.name = "Equipped";
         EquippedObj.SetActive(false);
         EquipeedUI = EquippedObj.GetComponent<EquipeedUI>();

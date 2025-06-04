@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +14,9 @@ public class Monster : MonoBehaviour
     public GameObject AttackRange;
     public bool CanAttack;
     public bool IsAttack;
-    UnityAction IsDie;
+    public bool IsDie;
+    UnityAction OnDie;
+    public GameObject Player;
 
     void Awake() => Init();
 
@@ -32,29 +32,36 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        if (CanAttack)
+        if (!IsDie)
         {
-            if (!IsAttack)
-                Animator.SetTrigger("IsAttack");
-            Animator.SetBool("IsMove", true);
-        }
-        else
-        {
-            Animator.SetBool("IsMove", true);
-            Move();
+            if (CanAttack)
+            {
+                if (!IsAttack)
+                {
+                    IsAttack = true;
+                    Animator.SetTrigger("IsAttack");
+                }
+                Animator.SetBool("IsMove", false);
+            }
+            else
+            {
+                Animator.SetBool("IsMove", true);
+                Move();
+            }
         }
     }
 
     private void Init()
     {
+        Player = GameObject.Find("Player");
         _currentHp = MaxHp;
-        IsDie += Die;
+        OnDie += Die;
     }
 
     private void Move()
     {
-        Vector3 LookDirection = new Vector3(GameManager.player.gameObject.transform.position.x,
-        transform.position.y, GameManager.player.gameObject.transform.position.z);
+        Vector3 LookDirection = new Vector3(Player.transform.position.x,
+        transform.position.y, Player.transform.position.z);
         transform.LookAt(LookDirection);
         transform.Translate(Vector3.forward * Time.deltaTime * MoveSpeed);
     }
@@ -67,7 +74,7 @@ public class Monster : MonoBehaviour
             int PlayerDamage = other.GetComponentInParent<PlayerStatus>().state.Damage;
             _currentHp -= PlayerDamage;
             if (_currentHp < 0)
-                IsDie?.Invoke();
+                OnDie?.Invoke();
         }
     }
 
@@ -76,7 +83,6 @@ public class Monster : MonoBehaviour
         if (value == 1)
         {
             AttackRange.tag = "MonsterAttack";
-            IsAttack = true;
         }
         else
         {
@@ -87,6 +93,7 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
+        IsDie = true;
         Animator.SetTrigger("IsDie");
     }
 

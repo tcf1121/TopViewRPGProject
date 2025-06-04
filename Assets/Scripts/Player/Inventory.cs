@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     private void Init()
     {
-        GameObject InvenObj = Instantiate(InventoryPrefab, GameObject.Find("Canvas").transform);
+        GameObject InvenObj = Instantiate(InventoryPrefab, GameObject.Find("PlayerUI").transform);
         InvenObj.name = "Inventory";
         InvenObj.SetActive(false);
         InventoryUI = InvenObj.GetComponent<InventoryUI>();

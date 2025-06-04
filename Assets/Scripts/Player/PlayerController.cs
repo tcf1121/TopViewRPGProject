@@ -45,10 +45,12 @@ public class PlayerController : MonoBehaviour
         Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
 
         float rayLength;
-
+        int layermask = 1 << LayerMask.NameToLayer("Ground");
         if (GroupPlane.Raycast(cameraRay, out rayLength))
         {
+
             Vector3 pointTolook = cameraRay.GetPoint(rayLength);
+            Debug.Log(pointTolook);
             LookDirection = new Vector3(pointTolook.x, transform.position.y, pointTolook.z);
             transform.LookAt(LookDirection);
         }

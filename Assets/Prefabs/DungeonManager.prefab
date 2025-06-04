@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2533316452388609615}
   - component: {fileID: 4100385995609807914}
+  - component: {fileID: 3712825738541586241}
+  - component: {fileID: 8176705343775132274}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -44,7 +46,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071a753c6fcae5d4ca8e4062e6bcdd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomPrefab: {fileID: 4298076682595486701, guid: f0afa246bfc2bf84d9077abe52cb0ff0,
-    type: 3}
+  _roomPrefab: {fileID: 4298076682595486701, guid: f0afa246bfc2bf84d9077abe52cb0ff0, type: 3}
+  _dgPlayer: {fileID: 3712825738541586241}
   _roomWidth: 16
   _roomheight: 10
+--- !u!114 &3712825738541586241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132695837229609474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2216ff676f0a236459294c3a0311e83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _camera: {fileID: 0}
+  _msPrefab: {fileID: 8980273530015344953, guid: 535c0adeba7b7a747b3790f4d7a3349a, type: 3}
+--- !u!114 &8176705343775132274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132695837229609474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6134a993a45227a42aca0008540e89d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _potalPrefab: {fileID: 7754165115111153005, guid: 9a3543268318af84b84d94f73136735c, type: 3}
+  _tresureChestPrefab:
+  - {fileID: 4639477866034190558, guid: 744533cbcd1ab6941bcedfa471360a09, type: 3}
+  - {fileID: 3183251560110310184, guid: 3b71ba51bce4ee347b384724a36fa35a, type: 3}
+  - {fileID: 2253518862082809152, guid: 79fc9aa6f7818024aa0562a365729816, type: 3}

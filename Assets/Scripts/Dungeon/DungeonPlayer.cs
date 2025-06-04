@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class DungeonPlayer : MonoBehaviour
 {
@@ -18,6 +14,7 @@ public class DungeonPlayer : MonoBehaviour
 
     public void Init()
     {
+        _player = GameObject.Find("Player");
         _monsterSpawner = _msPrefab.GetComponent<MonsterSpawner>();
         _ectSpawner = GetComponent<EctSpawner>();
         _playerToDungeon = _player.AddComponent<PlayerToDungeon>();

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public static Player player;
+    [SerializeField] public GameObject playerprefab;
+    [SerializeField] public GameObject Canvas;
+    public static Player player;
     public static Dungeon Dungeon;
 
     private static GameManager instance;
@@ -22,10 +19,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetSingleton();
-        player = GameObject.Find("Player").GetComponent<Player>();
-        //Dungeon = GameObject.Find("DungeonManager").GetComponent<Dungeon>();
-        // 테스트용 추가
-        //testGameStart();
+
+        GameObject playerObj = Instantiate(playerprefab);
+        player = playerObj.GetComponent<Player>();
+        playerObj.name = "Player";
+        DontDestroyOnLoad(playerObj);
+        DontDestroyOnLoad(Canvas);
     }
     private void SetSingleton()
     {
@@ -45,17 +44,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void testGameStart()
-    {
-        Dungeon.Init();
-    }
-
     private void GameOver()
     {
 
     }
 
-    private void EndGame()
+    public void EndGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -68,6 +62,19 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    public void EnterVillage()
+    {
+        LoadingSceneManager.LoadScene(2);
+    }
+
+    public void EnterDungeon()
+    {
+        LoadingSceneManager.LoadScene(3);
+
+    }
+
+
 
 
 }

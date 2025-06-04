@@ -244,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 3296397090211103509}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -308,7 +308,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &8375753389660534555
 CapsuleCollider:
@@ -372,8 +372,9 @@ MonoBehaviour:
   IsJump: 0
   IsDoing: 000000000000
   IsOnUI: 0
-  DownBar: {fileID: 0}
+  DownBarPrefab: {fileID: 714497544174855803, guid: 8a7bbda612f4bdd4cb7a4e8d1319bf27, type: 3}
   material: {fileID: 2100000, guid: ba60cdd58f8553745a69ac7b2cd37894, type: 2}
+  _downBar: {fileID: 0}
 --- !u!114 &1575657524339034013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +467,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryPrefab: {fileID: 1711821840926764898, guid: c4c0858cd72d77d4cafe09e7ba546798, type: 3}
-  Equipitems: []
+  Equipitems:
+  - {fileID: 8342623929869703229, guid: 871a6b3a42f85564cada62f11ef874c5, type: 3}
+  - {fileID: 8342623929869703229, guid: 871a6b3a42f85564cada62f11ef874c5, type: 3}
+  - {fileID: 8342623929869703229, guid: 871a6b3a42f85564cada62f11ef874c5, type: 3}
+  - {fileID: 8342623929869703229, guid: 871a6b3a42f85564cada62f11ef874c5, type: 3}
+  - {fileID: 8342623929869703229, guid: 871a6b3a42f85564cada62f11ef874c5, type: 3}
   Useitems: []
   Etcitems: []
 --- !u!1001 &1705003810661143595

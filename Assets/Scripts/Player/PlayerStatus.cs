@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,26 +36,35 @@ public class PlayerStatus : MonoBehaviour
     public bool[] IsDoing = new bool[7];
     public bool IsOnUI;
 
-    [SerializeField] private GameObject DownBar;
+    [SerializeField] private GameObject DownBarPrefab;
     [SerializeField] private Material material;
-    private MaterialPropertyBlock mb;
+    [SerializeField] private DownBar _downBar;
+    private Coroutine _hitdelay;
 
     void Awake() => Init();
 
 
     private void Init()
     {
+        GameObject DownBarObj = Instantiate(DownBarPrefab, GameObject.Find("PlayerUI").transform);
+        DownBarObj.name = "DownBar";
+        DownBarObj.SetActive(false);
+        _downBar = DownBarObj.GetComponent<DownBar>();
         IsDie += Die;
         ChangeHp += SetHp;
         ChangeMp += SetMp;
         state.Hp = 30;
         state.Mp = 10;
-        state.Damage = 5;
-        state.Defense = 2;
+        state.Damage = 2;
+        state.Defense = 0;
         state.Speed = 0;
         CurrentHP = state.Hp;
         CurrentMP = state.Mp;
-        Instantiate(DownBar);
+    }
+
+    public void OnDownBar()
+    {
+        GameObject.Find("PlayerUI").transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void SetHp()
@@ -86,12 +94,30 @@ public class PlayerStatus : MonoBehaviour
     {
         if (other.CompareTag("MonsterAttack"))
         {
-            int MonsterDamage = other.GetComponentInParent<Monster>().Damage - state.Defense;
-            if (MonsterDamage < 0) MonsterDamage = 0;
-            CurrentHP -= MonsterDamage;
-            if (CurrentHP < 0)
-                IsDie.Invoke();
+            if (_hitdelay == null)
+            {
+                int MonsterDamage = other.GetComponentInParent<Monster>().Damage - state.Defense;
+                if (MonsterDamage < 0) MonsterDamage = 0;
+
+                _hitdelay = StartCoroutine(Hit(MonsterDamage));
+            }
+
         }
+    }
+
+    private IEnumerator Hit(int Damage)
+    {
+        CurrentHP -= Damage;
+        if (CurrentHP < 0)
+            IsDie.Invoke();
+        float time = 1.5f;
+        while (time > 0.0f)
+        {
+            time -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        StopCoroutine(_hitdelay);
+        _hitdelay = null;
     }
 }
 

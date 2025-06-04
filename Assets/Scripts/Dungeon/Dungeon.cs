@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dungeon : MonoBehaviour
 {
+    [SerializeField] private Image _timebar;
     [SerializeField] private GameObject _roomPrefab;
     [SerializeField] private DungeonPlayer _dgPlayer;
     [SerializeField] private float _roomWidth;
@@ -16,15 +16,26 @@ public class Dungeon : MonoBehaviour
     private List<Vector2Int> newRoomList = new();
     private List<Vector2Int> RemovedRoomList = new();
 
-    private void Awake()
-    {
+    private float gameTime = 900f;
+    private float times = 0;
 
-    }
+    private void Awake() => Init();
 
     public void Init()
     {
+        GameManager.Dungeon = this;
         _dgPlayer.Init();
         StartDungeon(1);
+    }
+
+    void Update()
+    {
+        times += Time.deltaTime;
+        _timebar.fillAmount = (gameTime - times) / gameTime;
+        if (times >= gameTime)
+        {
+            LoadingSceneManager.LoadScene(2);
+        }
     }
 
     public void StartDungeon(int floor)
