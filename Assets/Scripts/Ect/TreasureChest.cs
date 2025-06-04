@@ -6,13 +6,13 @@ public class TreasureChest : MonoBehaviour
 {
     private int _floor;
     [SerializeField] private Animator _animator;
-    [SerializeField] private List<Item> _items;
+    [SerializeField] private List<GameObject> _items;
     // 가지고 있는 아이템 리스트
 
     void OnDestroy()
     {
         RoomManager.DieMonster();
-        // 맵에 아이템 생성
+        DropItem();
     }
 
     public void SetFloor(int floor)
@@ -20,14 +20,16 @@ public class TreasureChest : MonoBehaviour
         _floor = floor;
     }
 
-    public void SetItem()
+    public void DropItem()
     {
-        // 상자 안에 아이템 생성성
+        int dropRandom = Random.Range(0, _items.Count);
+        GameObject itemObj = Instantiate(_items[dropRandom]);
+        itemObj.name = _items[dropRandom].GetComponent<Item>().ItemCode;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Attack"))
+        if (other.gameObject.CompareTag("Pick"))
             _animator.SetTrigger("IsOpen");
     }
 

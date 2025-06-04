@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Equipped : MonoBehaviour
 {
+    public Player player;
+
     [SerializeField] private GameObject EquipeedPrefab;
     private EquipeedUI EquipeedUI;
 
@@ -40,7 +42,8 @@ public class Equipped : MonoBehaviour
         {
             GameObject weaponObj = Resources.Load<GameObject>($"Item/{equip.ItemCode}");
             _weaponEquip = weaponObj.GetComponent<Weapon>();
-
+            player.playerStatus.state.AddState(_weaponEquip.state);
+            player.playerStatus.SpeedUp();
             Instantiate(_weaponEquip.weoponPrefab, _weaponPart.transform);
         }
         else
@@ -48,6 +51,8 @@ public class Equipped : MonoBehaviour
             if (equip.equipType == 0)
                 _hairPrefab.SetActive(false);
             EquipPart[(int)equip.equipType] = equip;
+            player.playerStatus.state.AddState(equip.state);
+            player.playerStatus.SpeedUp();
             _part[(int)equip.equipType].sharedMesh = EquipPart[(int)equip.equipType].EquipMesh;
         }
     }
@@ -60,6 +65,8 @@ public class Equipped : MonoBehaviour
                 Destroy(child.gameObject);
             if (_weaponEquip != null)
             {
+                player.playerStatus.state.SubState(_weaponEquip.state);
+                player.playerStatus.SpeedUp();
                 GameManager.player.inventory.AddItem(_weaponEquip.ItemCode);
                 _weaponEquip = null;
             }
@@ -70,6 +77,8 @@ public class Equipped : MonoBehaviour
                 _hairPrefab.SetActive(true);
             if (EquipPart[partNum] != null)
             {
+                player.playerStatus.state.SubState(EquipPart[partNum].state);
+                player.playerStatus.SpeedUp();
                 GameManager.player.inventory.AddItem(EquipPart[partNum].ItemCode);
                 EquipPart[partNum] = null;
                 _part[partNum].sharedMesh = _nakedPart[partNum];

@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //다음 층으로 이동
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Pick"))
         {
             Destroy(gameObject);
             GameManager.Dungeon.EndDungeon();

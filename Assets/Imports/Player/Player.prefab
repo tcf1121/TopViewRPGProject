@@ -357,16 +357,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c4977eb0576054ea1a9985bf05b1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 3191255820492957257}
   <MoveSpeed>k__BackingField: 5
   <JumpPower>k__BackingField: 5
   <DashPower>k__BackingField: 3
   Level: 0
-  <MaxHP>k__BackingField: 0
-  <Damage>k__BackingField: 0
+  state:
+    Hp: 0
+    Mp: 0
+    Damage: 0
+    Defense: 0
+    Speed: 0
   InputDirection: {x: 0, y: 0}
   IsJump: 0
   IsDoing: 000000000000
   IsOnUI: 0
+  DownBar: {fileID: 0}
+  material: {fileID: 2100000, guid: ba60cdd58f8553745a69ac7b2cd37894, type: 2}
 --- !u!114 &1575657524339034013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a67450c21cf6045b470ced3789a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 3191255820492957257}
+  EquipeedPrefab: {fileID: 7278074298777568471, guid: 548025e7d33233045b3817f868ecc748, type: 3}
   _part:
   - {fileID: 3668116561522881444}
   - {fileID: 2086640763714501559}
@@ -456,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bc1e86cf59bbf4a968ba918373a6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryUI: {fileID: 0}
+  InventoryPrefab: {fileID: 1711821840926764898, guid: c4c0858cd72d77d4cafe09e7ba546798, type: 3}
   Equipitems: []
   Useitems: []
   Etcitems: []

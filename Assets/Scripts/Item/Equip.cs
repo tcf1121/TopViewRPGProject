@@ -6,11 +6,7 @@ public class Equip : Item
 {
     private ParticleSystemRenderer _particleRenderer;
     public EquipType equipType;
-    public int Hp;
-    public int Mp;
-    public int Damage;
-    public int Defense;
-    public int Speed;
+    public State state;
     public Mesh EquipMesh;
 
     void Awake() => Init();
