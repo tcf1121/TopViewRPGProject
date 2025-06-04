@@ -155,7 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _potalPrefab: {fileID: 7754165115111153005, guid: 9a3543268318af84b84d94f73136735c, type: 3}
-  _tresureChestPrefab: {fileID: 1951164922139847694, guid: d1497d0beb140b04186da6bf882865b1, type: 3}
+  _tresureChestPrefab:
+  - {fileID: 4639477866034190558, guid: 744533cbcd1ab6941bcedfa471360a09, type: 3}
+  - {fileID: 3183251560110310184, guid: 3b71ba51bce4ee347b384724a36fa35a, type: 3}
+  - {fileID: 2253518862082809152, guid: 79fc9aa6f7818024aa0562a365729816, type: 3}
 --- !u!1001 &128677789
 PrefabInstance:
   m_ObjectHideFlags: 0

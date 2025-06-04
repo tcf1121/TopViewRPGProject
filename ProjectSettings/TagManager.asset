@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Monster
   - Pick
+  - MonsterAttack
   layers:
   - Default
   - TransparentFX
